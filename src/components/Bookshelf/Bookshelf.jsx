@@ -17,6 +17,7 @@ const BookShelf = () => {
   const clickHandler = (event) => {
     event.preventDefault();
     setBooks([...books, newBook]);
+    setNewBook({ title: "", author: "" });
   };
 
   return (
@@ -25,12 +26,22 @@ const BookShelf = () => {
         <h3>Add a Book</h3>
         <label>
           Title:
-          <input type="text" name="title" onChange={changeHandler} />
+          <input
+            type="text"
+            value={newBook.title}
+            name="title"
+            onChange={changeHandler}
+          />
         </label>
         <br />
         <label>
           Author:
-          <input type="text" name="author" onChange={changeHandler} />
+          <input
+            type="text"
+            value={newBook.author}
+            name="author"
+            onChange={changeHandler}
+          />
         </label>
         <br />
         <button onClick={clickHandler}>Add Book</button>
