@@ -7,27 +7,40 @@ const startingBooks = [
 
 const BookShelf = () => {
   const [books, setBooks] = useState(startingBooks);
+  const [newBook, setNewBook] = useState({ title: "", author: "" });
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
+    setNewBook({ ...newBook, [name]: value });
+    // console.log(newBook);
+  };
+  const clickHandler = (event) => {
+    event.preventDefault();
+    const newBookArray = [...books, newBook];
+    setBooks(newBookArray);
+    // console.log("Clicked!");
+  };
+
   return (
     <div className="bookshelfDiv">
       <div className="formDiv">
         <h3>Add a Book</h3>
         <label>
           Title:
-          <input type="text" name="bookTitle" />
+          <input type="text" name="title" onChange={changeHandler} />
         </label>
         <br />
         <label>
           Author:
-          <input type="text" name="bookAuthor" />
+          <input type="text" name="author" onChange={changeHandler} />
         </label>
         <br />
-        <button>Add Book</button>
+        <button onClick={clickHandler}>Add Book</button>
       </div>
       <div className="bookCardsDiv">
-        {startingBooks.map((book) => (
+        {books.map((book) => (
           <div className="bookCard">
             <h2>{book.title}</h2>
-            <p>{book.author}</p>
+            <p>by {book.author}</p>
           </div>
         ))}
       </div>
