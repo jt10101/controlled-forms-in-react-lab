@@ -8,16 +8,15 @@ const startingBooks = [
 const BookShelf = () => {
   const [books, setBooks] = useState(startingBooks);
   const [newBook, setNewBook] = useState({ title: "", author: "" });
+
   const changeHandler = (event) => {
     const { name, value } = event.target;
     setNewBook({ ...newBook, [name]: value });
-    // console.log(newBook);
   };
+
   const clickHandler = (event) => {
     event.preventDefault();
-    const newBookArray = [...books, newBook];
-    setBooks(newBookArray);
-    // console.log("Clicked!");
+    setBooks([...books, newBook]);
   };
 
   return (
