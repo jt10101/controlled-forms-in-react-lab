@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-startingBooks = [
+const startingBooks = [
   { title: "Fourth Wing", author: "Rebecca Yarros" },
   { title: "The Lion, the Witch and the Wardrobe", author: "C.S. Lewis" },
 ];
@@ -11,11 +11,26 @@ const BookShelf = () => {
     <div className="bookshelfDiv">
       <div className="formDiv">
         <h3>Add a Book</h3>
-        <form>
-          <input type="text" name="bookTitle"></input>
-        </form>
+        <label>
+          Title:
+          <input type="text" name="bookTitle" />
+        </label>
+        <br />
+        <label>
+          Author:
+          <input type="text" name="bookAuthor" />
+        </label>
+        <br />
+        <button>Add Book</button>
       </div>
-      <div className="bookCardsDiv">{/* Book cards will display here */}</div>
+      <div className="bookCardsDiv">
+        {startingBooks.map((book) => (
+          <div className="bookCard">
+            <h2>{book.title}</h2>
+            <p>{book.author}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
